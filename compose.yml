@@ -1,0 +1,18 @@
+services:
+  utils:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    restart: unless-stopped
+    networks:
+      - proxy
+    labels:
+      - "traefik.enable=true"
+
+      # utils.tvk.lol
+      - "traefik.http.routers.utils.rule=Host(`utils.tvk.lol`)"
+      - "traefik.http.routers.utils.entrypoints=https"
+
+networks:
+  proxy:
+    external: true
