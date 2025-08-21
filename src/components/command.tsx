@@ -8,8 +8,10 @@ import {
   CommandList,
 } from '@/components/ui/command';
 import { type Anchor, type Menu, type Site, siteTree } from '@/lib/routes';
+import { useNavigate } from '@tanstack/react-router';
 
 export function SiteSearch() {
+  const navigate = useNavigate();
   const [open, setOpen] = useState(false);
 
   useEffect(() => {
@@ -64,6 +66,12 @@ export function SiteSearch() {
                 key={child.href}
                 value={`${site.href}/${child.href}`}
                 className="flex flex-col items-start"
+                onSelect={(value) => {
+                  setOpen(false);
+                  navigate({
+                    to: value,
+                  });
+                }}
               >
                 {child.name}
                 {child.description && (
