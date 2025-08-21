@@ -11,6 +11,7 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as AboutRouteImport } from './routes/about'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as ToolsNetworkingMcSrvRecordRouteImport } from './routes/tools/networking/mc-srv-record'
 
 const AboutRoute = AboutRouteImport.update({
   id: '/about',
@@ -22,31 +23,41 @@ const IndexRoute = IndexRouteImport.update({
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ToolsNetworkingMcSrvRecordRoute =
+  ToolsNetworkingMcSrvRecordRouteImport.update({
+    id: '/tools/networking/mc-srv-record',
+    path: '/tools/networking/mc-srv-record',
+    getParentRoute: () => rootRouteImport,
+  } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
+  '/tools/networking/mc-srv-record': typeof ToolsNetworkingMcSrvRecordRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
+  '/tools/networking/mc-srv-record': typeof ToolsNetworkingMcSrvRecordRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
+  '/tools/networking/mc-srv-record': typeof ToolsNetworkingMcSrvRecordRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/about'
+  fullPaths: '/' | '/about' | '/tools/networking/mc-srv-record'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/about'
-  id: '__root__' | '/' | '/about'
+  to: '/' | '/about' | '/tools/networking/mc-srv-record'
+  id: '__root__' | '/' | '/about' | '/tools/networking/mc-srv-record'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AboutRoute: typeof AboutRoute
+  ToolsNetworkingMcSrvRecordRoute: typeof ToolsNetworkingMcSrvRecordRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -65,12 +76,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/tools/networking/mc-srv-record': {
+      id: '/tools/networking/mc-srv-record'
+      path: '/tools/networking/mc-srv-record'
+      fullPath: '/tools/networking/mc-srv-record'
+      preLoaderRoute: typeof ToolsNetworkingMcSrvRecordRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AboutRoute: AboutRoute,
+  ToolsNetworkingMcSrvRecordRoute: ToolsNetworkingMcSrvRecordRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

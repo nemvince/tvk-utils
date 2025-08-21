@@ -5,6 +5,9 @@ import { tanstackRouter } from '@tanstack/router-plugin/rspack';
 
 export default defineConfig({
   plugins: [pluginReact()],
+  html: {
+    template: './index.html',
+  },
   tools: {
     postcss: {
       postcssOptions: {

@@ -1,34 +1,32 @@
-import { createRootRoute, Link, Outlet } from '@tanstack/react-router'
-import { ThemeProvider } from '@/components/theme-provider'
-import { ThemeToggle } from '@/components/theme-toggle'
-
-interface Site {
-  name: string
-  href: string
-}
-
-const sites: Site[] = [
-  {
-    name: 'Index',
-    href: '/',
-  }
-]
+import { createRootRoute, HeadContent, Outlet } from '@tanstack/react-router';
+import { createPortal } from 'react-dom';
+import { SiteSearch } from '@/components/command';
+import { Navbar } from '@/components/navbar';
+import { ThemeProvider } from '@/components/theme-provider';
 
 export const Route = createRootRoute({
+  head: () => ({
+    meta: [
+      {
+        name: 'description',
+        content: 'sometimes awesome utils for developers',
+      },
+      {
+        title: 'tvk-utils',
+      },
+    ],
+  }),
   component: () => (
-    <ThemeProvider>
-      <header className="p-2 flex justify-between items-center">
-        <nav>
-          {sites.map((site) => (
-          <Link key={site.href} to={site.href} className="[&.active]:font-bold">
-          {site.name}
-        </Link>
-        ))}
-        </nav>
-        <ThemeToggle />
-      </header>
-      <hr />
-      <Outlet />
-    </ThemeProvider>
+    <>
+      {createPortal(<HeadContent />, document.head)}
+
+      <ThemeProvider>
+        <Navbar />
+        <SiteSearch />
+        <div className="grow m-4 border rounded-lg p-4 flex flex-col">
+          <Outlet />
+        </div>
+      </ThemeProvider>
+    </>
   ),
-})
+});
