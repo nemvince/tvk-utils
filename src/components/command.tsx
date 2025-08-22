@@ -1,3 +1,4 @@
+import { useNavigate } from '@tanstack/react-router';
 import { useEffect, useState } from 'react';
 import {
   CommandDialog,
@@ -8,7 +9,6 @@ import {
   CommandList,
 } from '@/components/ui/command';
 import { type Anchor, type Menu, type Site, siteTree } from '@/lib/routes';
-import { useNavigate } from '@tanstack/react-router';
 
 export function SiteSearch() {
   const navigate = useNavigate();

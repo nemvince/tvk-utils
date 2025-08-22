@@ -12,6 +12,7 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as AboutRouteImport } from './routes/about'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as ToolsNetworkingMcSrvRecordRouteImport } from './routes/tools/networking/mc-srv-record'
+import { Route as ToolsNetworkingCidrClashRouteImport } from './routes/tools/networking/cidr-clash'
 
 const AboutRoute = AboutRouteImport.update({
   id: '/about',
@@ -29,34 +30,57 @@ const ToolsNetworkingMcSrvRecordRoute =
     path: '/tools/networking/mc-srv-record',
     getParentRoute: () => rootRouteImport,
   } as any)
+const ToolsNetworkingCidrClashRoute =
+  ToolsNetworkingCidrClashRouteImport.update({
+    id: '/tools/networking/cidr-clash',
+    path: '/tools/networking/cidr-clash',
+    getParentRoute: () => rootRouteImport,
+  } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
+  '/tools/networking/cidr-clash': typeof ToolsNetworkingCidrClashRoute
   '/tools/networking/mc-srv-record': typeof ToolsNetworkingMcSrvRecordRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
+  '/tools/networking/cidr-clash': typeof ToolsNetworkingCidrClashRoute
   '/tools/networking/mc-srv-record': typeof ToolsNetworkingMcSrvRecordRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
+  '/tools/networking/cidr-clash': typeof ToolsNetworkingCidrClashRoute
   '/tools/networking/mc-srv-record': typeof ToolsNetworkingMcSrvRecordRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/about' | '/tools/networking/mc-srv-record'
+  fullPaths:
+    | '/'
+    | '/about'
+    | '/tools/networking/cidr-clash'
+    | '/tools/networking/mc-srv-record'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/about' | '/tools/networking/mc-srv-record'
-  id: '__root__' | '/' | '/about' | '/tools/networking/mc-srv-record'
+  to:
+    | '/'
+    | '/about'
+    | '/tools/networking/cidr-clash'
+    | '/tools/networking/mc-srv-record'
+  id:
+    | '__root__'
+    | '/'
+    | '/about'
+    | '/tools/networking/cidr-clash'
+    | '/tools/networking/mc-srv-record'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AboutRoute: typeof AboutRoute
+  ToolsNetworkingCidrClashRoute: typeof ToolsNetworkingCidrClashRoute
   ToolsNetworkingMcSrvRecordRoute: typeof ToolsNetworkingMcSrvRecordRoute
 }
 
@@ -83,12 +107,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ToolsNetworkingMcSrvRecordRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/tools/networking/cidr-clash': {
+      id: '/tools/networking/cidr-clash'
+      path: '/tools/networking/cidr-clash'
+      fullPath: '/tools/networking/cidr-clash'
+      preLoaderRoute: typeof ToolsNetworkingCidrClashRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AboutRoute: AboutRoute,
+  ToolsNetworkingCidrClashRoute: ToolsNetworkingCidrClashRoute,
   ToolsNetworkingMcSrvRecordRoute: ToolsNetworkingMcSrvRecordRoute,
 }
 export const routeTree = rootRouteImport
