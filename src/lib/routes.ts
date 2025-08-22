@@ -25,8 +25,15 @@ export const siteTree: Site[] = [
         type: 'anchor',
         href: 'mc-srv-record',
         description:
-          'Generate Minecraft server SRV records for your DNS provider.',
+          'Generate Minecraft server SRV records for your DNS provider',
       },
+      {
+        name: 'CIDR Clash Checker',
+        type: 'anchor',
+        href: 'cidr-clash',
+        description:
+          'Check if two CIDR ranges overlap',
+      }
     ],
   },
 ];
