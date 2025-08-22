@@ -106,8 +106,8 @@ function Page() {
   return (
     <div className="grow max-w-4xl mx-auto space-y-6">
       <ToolHeader
-        title="Minecraft SRV Record Generator"
-        description="Generate DNS SRV records for your Minecraft server to enable custom domain connections"
+        title={routeMeta.name}
+        description={routeMeta.description}
         icon={Server}
       />
 

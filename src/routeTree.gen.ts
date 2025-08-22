@@ -11,6 +11,7 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as AboutRouteImport } from './routes/about'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as ToolsQrCodeWifiRouteImport } from './routes/tools/qr-code/wifi'
 import { Route as ToolsNetworkingMcSrvRecordRouteImport } from './routes/tools/networking/mc-srv-record'
 import { Route as ToolsNetworkingCidrClashRouteImport } from './routes/tools/networking/cidr-clash'
 
@@ -22,6 +23,11 @@ const AboutRoute = AboutRouteImport.update({
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ToolsQrCodeWifiRoute = ToolsQrCodeWifiRouteImport.update({
+  id: '/tools/qr-code/wifi',
+  path: '/tools/qr-code/wifi',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ToolsNetworkingMcSrvRecordRoute =
@@ -42,12 +48,14 @@ export interface FileRoutesByFullPath {
   '/about': typeof AboutRoute
   '/tools/networking/cidr-clash': typeof ToolsNetworkingCidrClashRoute
   '/tools/networking/mc-srv-record': typeof ToolsNetworkingMcSrvRecordRoute
+  '/tools/qr-code/wifi': typeof ToolsQrCodeWifiRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/tools/networking/cidr-clash': typeof ToolsNetworkingCidrClashRoute
   '/tools/networking/mc-srv-record': typeof ToolsNetworkingMcSrvRecordRoute
+  '/tools/qr-code/wifi': typeof ToolsQrCodeWifiRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -55,6 +63,7 @@ export interface FileRoutesById {
   '/about': typeof AboutRoute
   '/tools/networking/cidr-clash': typeof ToolsNetworkingCidrClashRoute
   '/tools/networking/mc-srv-record': typeof ToolsNetworkingMcSrvRecordRoute
+  '/tools/qr-code/wifi': typeof ToolsQrCodeWifiRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -63,18 +72,21 @@ export interface FileRouteTypes {
     | '/about'
     | '/tools/networking/cidr-clash'
     | '/tools/networking/mc-srv-record'
+    | '/tools/qr-code/wifi'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
     | '/about'
     | '/tools/networking/cidr-clash'
     | '/tools/networking/mc-srv-record'
+    | '/tools/qr-code/wifi'
   id:
     | '__root__'
     | '/'
     | '/about'
     | '/tools/networking/cidr-clash'
     | '/tools/networking/mc-srv-record'
+    | '/tools/qr-code/wifi'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -82,6 +94,7 @@ export interface RootRouteChildren {
   AboutRoute: typeof AboutRoute
   ToolsNetworkingCidrClashRoute: typeof ToolsNetworkingCidrClashRoute
   ToolsNetworkingMcSrvRecordRoute: typeof ToolsNetworkingMcSrvRecordRoute
+  ToolsQrCodeWifiRoute: typeof ToolsQrCodeWifiRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -98,6 +111,13 @@ declare module '@tanstack/react-router' {
       path: '/'
       fullPath: '/'
       preLoaderRoute: typeof IndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/tools/qr-code/wifi': {
+      id: '/tools/qr-code/wifi'
+      path: '/tools/qr-code/wifi'
+      fullPath: '/tools/qr-code/wifi'
+      preLoaderRoute: typeof ToolsQrCodeWifiRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/tools/networking/mc-srv-record': {
@@ -122,6 +142,7 @@ const rootRouteChildren: RootRouteChildren = {
   AboutRoute: AboutRoute,
   ToolsNetworkingCidrClashRoute: ToolsNetworkingCidrClashRoute,
   ToolsNetworkingMcSrvRecordRoute: ToolsNetworkingMcSrvRecordRoute,
+  ToolsQrCodeWifiRoute: ToolsQrCodeWifiRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

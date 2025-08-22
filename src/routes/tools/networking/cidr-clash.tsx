@@ -196,8 +196,8 @@ function Page() {
   return (
     <div className="grow max-w-4xl mx-auto space-y-6">
       <ToolHeader
-        title="CIDR Overlap Checker"
-        description="Check for overlapping CIDR blocks to avoid network conflicts"
+        title={routeMeta.name}
+        description={routeMeta.description}
         icon={Network}
       />
 
