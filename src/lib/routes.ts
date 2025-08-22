@@ -31,9 +31,8 @@ export const siteTree: Site[] = [
         name: 'CIDR Clash Checker',
         type: 'anchor',
         href: 'cidr-clash',
-        description:
-          'Check if two CIDR ranges overlap',
-      }
+        description: 'Check if two CIDR ranges overlap',
+      },
     ],
   },
 ];
