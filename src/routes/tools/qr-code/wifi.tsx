@@ -267,7 +267,7 @@ function Page() {
             ) : (
               <div className="text-center py-12 text-gray-500 dark:text-gray-400">
                 <Server className="h-12 w-12 mx-auto mb-4 opacity-50" />
-                <p>Fill out the form to generate your SRV record</p>
+                <p>Fill out the form to generate your QR code</p>
               </div>
             )}
           </CardContent>
