@@ -218,7 +218,7 @@ function Page() {
               <Label htmlFor="cidr-input">Input</Label>
               <Textarea
                 id="cidr-input"
-                className="h-36 min-w-sm"
+                className="h-36 md:min-w-sm"
                 value={input}
                 ref={inputRef}
                 onChange={handleInputChange}
@@ -231,7 +231,7 @@ function Page() {
               <Label htmlFor="parsed-ranges">Parsed ranges</Label>
               <Textarea
                 id="parsed-ranges"
-                className="h-36 min-w-sm"
+                className="h-36 md:min-w-sm"
                 value={parsedRangesText}
                 readOnly
                 placeholder="Parsed ranges will appear here..."
