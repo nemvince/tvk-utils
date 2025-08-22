@@ -1,7 +1,7 @@
 import { zodResolver } from '@hookform/resolvers/zod';
 import { createFileRoute } from '@tanstack/react-router';
 import { Server, Zap } from 'lucide-react';
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { toast } from 'sonner';
 import { z } from 'zod';
@@ -90,6 +90,12 @@ function Page() {
     toast.success('SRV record generated successfully!');
   }
 
+  const inputRef = useRef<HTMLInputElement>(null);
+
+  useEffect(() => {
+    inputRef.current?.focus();
+  }, []);
+
   return (
     <div className="grow max-w-4xl mx-auto space-y-6">
       <ToolHeader
@@ -122,7 +128,14 @@ function Page() {
                     <FormItem>
                       <FormLabel>Base Domain *</FormLabel>
                       <FormControl>
-                        <Input placeholder="example.com" {...field} />
+                        <Input
+                          placeholder="example.com"
+                          {...field}
+                          ref={(el) => {
+                            field.ref(el);
+                            inputRef.current = el;
+                          }}
+                        />
                       </FormControl>
                       <FormDescription>
                         Your main domain name (e.g., example.com)

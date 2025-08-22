@@ -1,6 +1,6 @@
 import { createFileRoute } from '@tanstack/react-router';
 import { AlertCircleIcon, EthernetPort, Network } from 'lucide-react';
-import { useEffect, useMemo, useState } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
 import { ToolHeader } from '@/components/tool-header';
 import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
 import {
@@ -181,6 +181,12 @@ function Page() {
     [parsedBlocks],
   );
 
+  const inputRef = useRef<HTMLTextAreaElement>(null);
+
+  useEffect(() => {
+    inputRef.current?.focus();
+  }, []);
+
   return (
     <div className="grow max-w-4xl mx-auto space-y-6">
       <ToolHeader
@@ -208,6 +214,7 @@ function Page() {
                 id="cidr-input"
                 className="h-36 min-w-sm"
                 value={input}
+                ref={inputRef}
                 onChange={handleInputChange}
                 placeholder="10.0.0.0/8,192.168.0.0/16
 172.16.0.0/12, 100.64.0.0/10,10.0.0.0/24, 172.16.0.1/32"
