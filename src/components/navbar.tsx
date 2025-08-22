@@ -1,7 +1,6 @@
 import { Link } from '@tanstack/react-router';
-import { ThemeToggle } from './theme-toggle';
 import { SiteSearch } from '@/components/command';
-
+import { ThemeToggle } from './theme-toggle';
 
 export function Navbar() {
   return (
@@ -10,7 +9,7 @@ export function Navbar() {
         <Link to="/" className="font-bold text-lg text-primary">
           tvk-utils
         </Link>
-        <p className="text-muted-foreground text-sm">
+        <p className="text-muted-foreground text-sm hidden md:block">
           Press{' '}
           <kbd className="bg-muted text-muted-foreground pointer-events-none inline-flex h-5 items-center gap-1 rounded border px-1.5 font-mono text-[10px] font-medium opacity-100 select-none">
             <span className="text-xs">⌘</span>J
@@ -20,8 +19,8 @@ export function Navbar() {
       </nav>
 
       <div className="flex gap-4">
-      <SiteSearch />
-      <ThemeToggle />
+        <SiteSearch />
+        <ThemeToggle />
       </div>
     </header>
   );

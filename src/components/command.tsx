@@ -1,4 +1,5 @@
 import { useNavigate } from '@tanstack/react-router';
+import { Search } from 'lucide-react';
 import { useEffect, useState } from 'react';
 import {
   CommandDialog,
@@ -8,8 +9,7 @@ import {
   CommandItem,
   CommandList,
 } from '@/components/ui/command';
-import { type Anchor, type Menu, type Site, siteTree } from '@/lib/routes';
-import { Search } from 'lucide-react';
+import { siteTree } from '@/lib/siteTree';
 import { Button } from './ui/button';
 
 export function SiteSearch() {
@@ -28,38 +28,11 @@ export function SiteSearch() {
     return () => document.removeEventListener('keydown', down);
   }, []);
 
-  const formatSiteTree = (tree: Site[]) => {
-    const anchors: Anchor[] = [];
-    const menus: Menu[] = [];
-    tree.forEach((site) => {
-      if (site.type === 'anchor') {
-        anchors.push(site);
-      } else if (site.type === 'menu') {
-        menus.push(site);
-      }
-    });
-    const result = [...menus] as Menu[];
-    if (anchors.length > 0) {
-      result.unshift({
-        href: '/',
-        name: 'Uncategorized',
-        type: 'menu',
-        children: anchors,
-      });
-    }
-    return result;
-  };
-
-  const formatted = formatSiteTree(siteTree);
+  const filtered = siteTree.filter((group) => group.children.length > 0);
 
   return (
     <>
-      <Button
-        size="icon"
-        variant="ghost"
-        className="hidden md:inline-flex"
-        onClick={() => setOpen(true)}
-      >
+      <Button size="icon" variant="ghost" onClick={() => setOpen(true)}>
         <span className="sr-only">Search for a site</span>
         <Search className="h-5 w-5" />
       </Button>
@@ -71,12 +44,12 @@ export function SiteSearch() {
         <CommandInput placeholder="Search for a site..." />
         <CommandList>
           <CommandEmpty>No results found.</CommandEmpty>
-          {formatted.map((site) => (
-            <CommandGroup key={site.name} heading={site.name}>
-              {site.children.map((child) => (
+          {filtered.map((item) => (
+            <CommandGroup key={item.name} heading={item.name}>
+              {item.children.map((child) => (
                 <CommandItem
                   key={child.href}
-                  value={`${site.href}/${child.href}`}
+                  value={child.href}
                   className="flex flex-col items-start"
                   onSelect={(value) => {
                     setOpen(false);

@@ -26,6 +26,7 @@ import {
   FormMessage,
 } from '@/components/ui/form';
 import { Input } from '@/components/ui/input';
+import type { RouteMeta } from '@/lib/siteTree';
 
 const formSchema = z.object({
   baseDomain: z
@@ -61,6 +62,12 @@ const formSchema = z.object({
 export const Route = createFileRoute('/tools/networking/mc-srv-record')({
   component: Page,
 });
+
+export const routeMeta = {
+  name: 'Minecraft SRV Record Generator',
+  description:
+    'Generate DNS SRV records for your Minecraft server to use bare domain with custom ports',
+} satisfies RouteMeta;
 
 function Page() {
   const [generatedRecord, setGeneratedRecord] = useState<string>('');

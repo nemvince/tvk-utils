@@ -12,6 +12,10 @@ import {
 } from '@/components/ui/card';
 import { Label } from '@/components/ui/label';
 import { Textarea } from '@/components/ui/textarea';
+import type { RouteMeta } from '@/lib/siteTree';
+
+const CIDR_PART = '(?:\\d{1,3}(?:\\.\\d{1,3}){3}\\/(?:\\d|[12]\\d|3[0-2]))';
+const LINE_PATTERN = new RegExp(`^${CIDR_PART}(?:, ?${CIDR_PART})*$`);
 
 type CidrBlock = {
   cidr: string;
@@ -41,9 +45,6 @@ const intToIp = (int: number) => {
     int & 0xff,
   ].join('.');
 };
-
-const CIDR_PART = '(?:\\d{1,3}(?:\\.\\d{1,3}){3}\\/(?:\\d|[12]\\d|3[0-2]))';
-const LINE_PATTERN = new RegExp(`^${CIDR_PART}(?:, ?${CIDR_PART})*$`);
 
 const isValidIpv4 = (ip: string) => {
   const parts = ip.split('.');
@@ -92,6 +93,11 @@ const findOverlaps = (
 export const Route = createFileRoute('/tools/networking/cidr-clash')({
   component: Page,
 });
+
+export const routeMeta = {
+  name: 'CIDR Overlap Checker',
+  description: 'Check for overlapping CIDR blocks to avoid network conflicts',
+} satisfies RouteMeta;
 
 function Page() {
   const [input, setInput] = useState<string>('');
