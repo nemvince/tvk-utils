@@ -1,17 +1,16 @@
 export function Footer() {
   return (
     <footer className="p-2 px-4 mx-4 rounded-t-lg border flex justify-between items-center backdrop-blur-sm">
-      <p className="text-muted-foreground text-sm">
-        Project so cool it makes you want to hire me?{' '}
+      <nav className="flex gap-4">
         <a
-          href="https://linkedin.com/in/nemvince"
+          href="https://git.tvk.lol/nya/tvk-utils"
           className="underline text-accent-foreground"
           target="_blank"
           rel="noopener noreferrer"
         >
-          Let's connect on LinkedIn!
+          Source
         </a>
-      </p>
+      </nav>
       <p className="text-muted-foreground text-sm">
         Made with ❤️ by{' '}
         <a
