@@ -1,6 +1,5 @@
 import { createRootRoute, HeadContent, Outlet } from '@tanstack/react-router';
 import { createPortal } from 'react-dom';
-import { SiteSearch } from '@/components/command';
 import { Footer } from '@/components/footer';
 import { Navbar } from '@/components/navbar';
 import { ThemeProvider } from '@/components/theme-provider';
@@ -23,7 +22,6 @@ export const Route = createRootRoute({
 
       <ThemeProvider>
         <Navbar />
-        <SiteSearch />
         <div className="grow m-4 border rounded-lg p-4 flex flex-col backdrop-blur-xs">
           <Outlet />
         </div>

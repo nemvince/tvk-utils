@@ -1,5 +1,7 @@
 import { Link } from '@tanstack/react-router';
 import { ThemeToggle } from './theme-toggle';
+import { SiteSearch } from '@/components/command';
+
 
 export function Navbar() {
   return (
@@ -17,7 +19,10 @@ export function Navbar() {
         </p>
       </nav>
 
+      <div className="flex gap-4">
+      <SiteSearch />
       <ThemeToggle />
+      </div>
     </header>
   );
 }

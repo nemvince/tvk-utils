@@ -9,6 +9,8 @@ import {
   CommandList,
 } from '@/components/ui/command';
 import { type Anchor, type Menu, type Site, siteTree } from '@/lib/routes';
+import { Search } from 'lucide-react';
+import { Button } from './ui/button';
 
 export function SiteSearch() {
   const navigate = useNavigate();
@@ -51,37 +53,48 @@ export function SiteSearch() {
   const formatted = formatSiteTree(siteTree);
 
   return (
-    <CommandDialog
-      open={open}
-      onOpenChange={setOpen}
-      className="rounded-lg border shadow-md md:min-w-[450px]"
-    >
-      <CommandInput placeholder="Search for a site..." />
-      <CommandList>
-        <CommandEmpty>No results found.</CommandEmpty>
-        {formatted.map((site) => (
-          <CommandGroup key={site.name} heading={site.name}>
-            {site.children.map((child) => (
-              <CommandItem
-                key={child.href}
-                value={`${site.href}/${child.href}`}
-                className="flex flex-col items-start"
-                onSelect={(value) => {
-                  setOpen(false);
-                  navigate({
-                    to: value,
-                  });
-                }}
-              >
-                {child.name}
-                {child.description && (
-                  <span className="text-xs">{child.description}</span>
-                )}
-              </CommandItem>
-            ))}
-          </CommandGroup>
-        ))}
-      </CommandList>
-    </CommandDialog>
+    <>
+      <Button
+        size="icon"
+        variant="ghost"
+        className="hidden md:inline-flex"
+        onClick={() => setOpen(true)}
+      >
+        <span className="sr-only">Search for a site</span>
+        <Search className="h-5 w-5" />
+      </Button>
+      <CommandDialog
+        open={open}
+        onOpenChange={setOpen}
+        className="rounded-lg border shadow-md md:min-w-[450px]"
+      >
+        <CommandInput placeholder="Search for a site..." />
+        <CommandList>
+          <CommandEmpty>No results found.</CommandEmpty>
+          {formatted.map((site) => (
+            <CommandGroup key={site.name} heading={site.name}>
+              {site.children.map((child) => (
+                <CommandItem
+                  key={child.href}
+                  value={`${site.href}/${child.href}`}
+                  className="flex flex-col items-start"
+                  onSelect={(value) => {
+                    setOpen(false);
+                    navigate({
+                      to: value,
+                    });
+                  }}
+                >
+                  {child.name}
+                  {child.description && (
+                    <span className="text-xs">{child.description}</span>
+                  )}
+                </CommandItem>
+              ))}
+            </CommandGroup>
+          ))}
+        </CommandList>
+      </CommandDialog>
+    </>
   );
 }
