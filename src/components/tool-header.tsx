@@ -13,7 +13,7 @@ export function ToolHeader({
 }: ToolHeaderProps) {
   return (
     <div className="text-center space-y-4 pt-8">
-      <div className="flex items-center justify-center gap-3">
+      <div className="flex flex-col md:flex-row items-center justify-center gap-3">
         <div className="p-3 bg-primary rounded-xl">
           {Icon ? <Icon className="h-8 w-8 text-white" /> : null}
         </div>
