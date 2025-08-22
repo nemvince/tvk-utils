@@ -39,7 +39,7 @@ export function SiteSearch() {
       <CommandDialog
         open={open}
         onOpenChange={setOpen}
-        className="rounded-lg border shadow-md md:min-w-[450px]"
+        className="rounded-lg border shadow-md max-w-sm md:max-w-xl md:min-w-[450px]"
       >
         <CommandInput placeholder="Search for a site..." />
         <CommandList>
