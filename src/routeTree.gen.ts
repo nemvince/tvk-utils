@@ -11,6 +11,7 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as AboutRouteImport } from './routes/about'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as ToolsTextUrlEncodeDecodeRouteImport } from './routes/tools/text/url-encode-decode'
 import { Route as ToolsQrCodeWifiRouteImport } from './routes/tools/qr-code/wifi'
 import { Route as ToolsQrCodeSimpleRouteImport } from './routes/tools/qr-code/simple'
 import { Route as ToolsNetworkingMcSrvRecordRouteImport } from './routes/tools/networking/mc-srv-record'
@@ -26,6 +27,12 @@ const IndexRoute = IndexRouteImport.update({
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ToolsTextUrlEncodeDecodeRoute =
+  ToolsTextUrlEncodeDecodeRouteImport.update({
+    id: '/tools/text/url-encode-decode',
+    path: '/tools/text/url-encode-decode',
+    getParentRoute: () => rootRouteImport,
+  } as any)
 const ToolsQrCodeWifiRoute = ToolsQrCodeWifiRouteImport.update({
   id: '/tools/qr-code/wifi',
   path: '/tools/qr-code/wifi',
@@ -56,6 +63,7 @@ export interface FileRoutesByFullPath {
   '/tools/networking/mc-srv-record': typeof ToolsNetworkingMcSrvRecordRoute
   '/tools/qr-code/simple': typeof ToolsQrCodeSimpleRoute
   '/tools/qr-code/wifi': typeof ToolsQrCodeWifiRoute
+  '/tools/text/url-encode-decode': typeof ToolsTextUrlEncodeDecodeRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -64,6 +72,7 @@ export interface FileRoutesByTo {
   '/tools/networking/mc-srv-record': typeof ToolsNetworkingMcSrvRecordRoute
   '/tools/qr-code/simple': typeof ToolsQrCodeSimpleRoute
   '/tools/qr-code/wifi': typeof ToolsQrCodeWifiRoute
+  '/tools/text/url-encode-decode': typeof ToolsTextUrlEncodeDecodeRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -73,6 +82,7 @@ export interface FileRoutesById {
   '/tools/networking/mc-srv-record': typeof ToolsNetworkingMcSrvRecordRoute
   '/tools/qr-code/simple': typeof ToolsQrCodeSimpleRoute
   '/tools/qr-code/wifi': typeof ToolsQrCodeWifiRoute
+  '/tools/text/url-encode-decode': typeof ToolsTextUrlEncodeDecodeRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -83,6 +93,7 @@ export interface FileRouteTypes {
     | '/tools/networking/mc-srv-record'
     | '/tools/qr-code/simple'
     | '/tools/qr-code/wifi'
+    | '/tools/text/url-encode-decode'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -91,6 +102,7 @@ export interface FileRouteTypes {
     | '/tools/networking/mc-srv-record'
     | '/tools/qr-code/simple'
     | '/tools/qr-code/wifi'
+    | '/tools/text/url-encode-decode'
   id:
     | '__root__'
     | '/'
@@ -99,6 +111,7 @@ export interface FileRouteTypes {
     | '/tools/networking/mc-srv-record'
     | '/tools/qr-code/simple'
     | '/tools/qr-code/wifi'
+    | '/tools/text/url-encode-decode'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -108,6 +121,7 @@ export interface RootRouteChildren {
   ToolsNetworkingMcSrvRecordRoute: typeof ToolsNetworkingMcSrvRecordRoute
   ToolsQrCodeSimpleRoute: typeof ToolsQrCodeSimpleRoute
   ToolsQrCodeWifiRoute: typeof ToolsQrCodeWifiRoute
+  ToolsTextUrlEncodeDecodeRoute: typeof ToolsTextUrlEncodeDecodeRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -124,6 +138,13 @@ declare module '@tanstack/react-router' {
       path: '/'
       fullPath: '/'
       preLoaderRoute: typeof IndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/tools/text/url-encode-decode': {
+      id: '/tools/text/url-encode-decode'
+      path: '/tools/text/url-encode-decode'
+      fullPath: '/tools/text/url-encode-decode'
+      preLoaderRoute: typeof ToolsTextUrlEncodeDecodeRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/tools/qr-code/wifi': {
@@ -164,6 +185,7 @@ const rootRouteChildren: RootRouteChildren = {
   ToolsNetworkingMcSrvRecordRoute: ToolsNetworkingMcSrvRecordRoute,
   ToolsQrCodeSimpleRoute: ToolsQrCodeSimpleRoute,
   ToolsQrCodeWifiRoute: ToolsQrCodeWifiRoute,
+  ToolsTextUrlEncodeDecodeRoute: ToolsTextUrlEncodeDecodeRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
