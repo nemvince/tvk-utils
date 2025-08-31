@@ -1,6 +1,6 @@
 export function Footer() {
   return (
-    <footer className="p-2 px-4 mx-4 rounded-t-lg border flex justify-between items-center backdrop-blur-sm">
+    <footer className="p-2 px-4 mx-4 rounded-t-lg border flex justify-between items-center">
       <nav className="flex gap-4">
         <a
           href="https://git.tvk.lol/nya/tvk-utils"

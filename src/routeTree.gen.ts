@@ -12,6 +12,7 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as AboutRouteImport } from './routes/about'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as ToolsQrCodeWifiRouteImport } from './routes/tools/qr-code/wifi'
+import { Route as ToolsQrCodeSimpleRouteImport } from './routes/tools/qr-code/simple'
 import { Route as ToolsNetworkingMcSrvRecordRouteImport } from './routes/tools/networking/mc-srv-record'
 import { Route as ToolsNetworkingCidrClashRouteImport } from './routes/tools/networking/cidr-clash'
 
@@ -28,6 +29,11 @@ const IndexRoute = IndexRouteImport.update({
 const ToolsQrCodeWifiRoute = ToolsQrCodeWifiRouteImport.update({
   id: '/tools/qr-code/wifi',
   path: '/tools/qr-code/wifi',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ToolsQrCodeSimpleRoute = ToolsQrCodeSimpleRouteImport.update({
+  id: '/tools/qr-code/simple',
+  path: '/tools/qr-code/simple',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ToolsNetworkingMcSrvRecordRoute =
@@ -48,6 +54,7 @@ export interface FileRoutesByFullPath {
   '/about': typeof AboutRoute
   '/tools/networking/cidr-clash': typeof ToolsNetworkingCidrClashRoute
   '/tools/networking/mc-srv-record': typeof ToolsNetworkingMcSrvRecordRoute
+  '/tools/qr-code/simple': typeof ToolsQrCodeSimpleRoute
   '/tools/qr-code/wifi': typeof ToolsQrCodeWifiRoute
 }
 export interface FileRoutesByTo {
@@ -55,6 +62,7 @@ export interface FileRoutesByTo {
   '/about': typeof AboutRoute
   '/tools/networking/cidr-clash': typeof ToolsNetworkingCidrClashRoute
   '/tools/networking/mc-srv-record': typeof ToolsNetworkingMcSrvRecordRoute
+  '/tools/qr-code/simple': typeof ToolsQrCodeSimpleRoute
   '/tools/qr-code/wifi': typeof ToolsQrCodeWifiRoute
 }
 export interface FileRoutesById {
@@ -63,6 +71,7 @@ export interface FileRoutesById {
   '/about': typeof AboutRoute
   '/tools/networking/cidr-clash': typeof ToolsNetworkingCidrClashRoute
   '/tools/networking/mc-srv-record': typeof ToolsNetworkingMcSrvRecordRoute
+  '/tools/qr-code/simple': typeof ToolsQrCodeSimpleRoute
   '/tools/qr-code/wifi': typeof ToolsQrCodeWifiRoute
 }
 export interface FileRouteTypes {
@@ -72,6 +81,7 @@ export interface FileRouteTypes {
     | '/about'
     | '/tools/networking/cidr-clash'
     | '/tools/networking/mc-srv-record'
+    | '/tools/qr-code/simple'
     | '/tools/qr-code/wifi'
   fileRoutesByTo: FileRoutesByTo
   to:
@@ -79,6 +89,7 @@ export interface FileRouteTypes {
     | '/about'
     | '/tools/networking/cidr-clash'
     | '/tools/networking/mc-srv-record'
+    | '/tools/qr-code/simple'
     | '/tools/qr-code/wifi'
   id:
     | '__root__'
@@ -86,6 +97,7 @@ export interface FileRouteTypes {
     | '/about'
     | '/tools/networking/cidr-clash'
     | '/tools/networking/mc-srv-record'
+    | '/tools/qr-code/simple'
     | '/tools/qr-code/wifi'
   fileRoutesById: FileRoutesById
 }
@@ -94,6 +106,7 @@ export interface RootRouteChildren {
   AboutRoute: typeof AboutRoute
   ToolsNetworkingCidrClashRoute: typeof ToolsNetworkingCidrClashRoute
   ToolsNetworkingMcSrvRecordRoute: typeof ToolsNetworkingMcSrvRecordRoute
+  ToolsQrCodeSimpleRoute: typeof ToolsQrCodeSimpleRoute
   ToolsQrCodeWifiRoute: typeof ToolsQrCodeWifiRoute
 }
 
@@ -120,6 +133,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ToolsQrCodeWifiRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/tools/qr-code/simple': {
+      id: '/tools/qr-code/simple'
+      path: '/tools/qr-code/simple'
+      fullPath: '/tools/qr-code/simple'
+      preLoaderRoute: typeof ToolsQrCodeSimpleRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/tools/networking/mc-srv-record': {
       id: '/tools/networking/mc-srv-record'
       path: '/tools/networking/mc-srv-record'
@@ -142,6 +162,7 @@ const rootRouteChildren: RootRouteChildren = {
   AboutRoute: AboutRoute,
   ToolsNetworkingCidrClashRoute: ToolsNetworkingCidrClashRoute,
   ToolsNetworkingMcSrvRecordRoute: ToolsNetworkingMcSrvRecordRoute,
+  ToolsQrCodeSimpleRoute: ToolsQrCodeSimpleRoute,
   ToolsQrCodeWifiRoute: ToolsQrCodeWifiRoute,
 }
 export const routeTree = rootRouteImport

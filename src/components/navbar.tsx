@@ -4,7 +4,7 @@ import { ThemeToggle } from './theme-toggle';
 
 export function Navbar() {
   return (
-    <header className="p-2 px-4 mx-4 rounded-b-lg border flex justify-between items-center backdrop-blur-sm z-10">
+    <header className="p-2 px-4 mx-4 rounded-b-lg border flex justify-between items-center z-10">
       <nav className="flex items-center gap-4">
         <Link to="/" className="font-bold text-lg text-primary">
           tvk-utils

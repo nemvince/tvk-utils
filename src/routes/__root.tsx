@@ -22,7 +22,7 @@ export const Route = createRootRoute({
 
       <ThemeProvider>
         <Navbar />
-        <div className="grow m-4 border rounded-lg p-4 flex flex-col backdrop-blur-xs">
+        <div className="grow m-4 border rounded-lg p-4 flex flex-col">
           <Outlet />
         </div>
         <Footer />
